@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
-import { View,StyleSheet,PanResponder, ImageBackground } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, StyleSheet, PanResponder, ImageBackground } from 'react-native';
 import styled from 'styled-components/native';
 import { CONSTANTS } from '../constants';
+import { AppStateContext } from '../screens/AppStateContext';
 
+const dog = require('../assets/dog.png');
+const cat = require('../assets/cat.png');
 
-const image = require('../assets/arrow.png');
 const ArrowImg = styled(ImageBackground)`
-  width: ${CONSTANTS.ARROW_SIZE.width}px;
-  height: ${CONSTANTS.ARROW_SIZE.height}px;
+  width: ${CONSTANTS.SIZE.width}px;
+  height: ${CONSTANTS.SIZE.height}px;
 `;
 const Arrow = ({ arrowValueChange }) => {
+  const contextValue = useContext(AppStateContext);
+  const { isDog } = contextValue;
   const [position, setPosition] = useState(CONSTANTS.ARROW_POSITION);
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
@@ -30,15 +34,19 @@ const Arrow = ({ arrowValueChange }) => {
       ]}
       {...panResponder.panHandlers}
     >
-      <ArrowImg source={image}></ArrowImg>
+      {isDog ? (
+        <ArrowImg source={dog}></ArrowImg>
+      ) : (
+        <ArrowImg source={cat}></ArrowImg>
+      )}
     </View>
   );
 };
 const styles = StyleSheet.create({
   draggable: {
     position: 'absolute',
-    width: 18,
-    height: 120,
+    width: 40,
+    height: 40,
     zIndex: 10,
   },
 });

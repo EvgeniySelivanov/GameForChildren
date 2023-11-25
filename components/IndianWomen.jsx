@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import styled from 'styled-components/native';
 import { CONSTANTS } from '../constants';
-const image = require('../assets/indian_women.png');
+const image = require('../assets/badFood2.png');
 
 const IndianWomenImg = styled(Image)`
-  width: ${CONSTANTS.INDIAN_WOMEN_SIZE.width}px; /* Задайте нужную ширину */
-  height: ${CONSTANTS.INDIAN_WOMEN_SIZE.height}px; /* Максимальная высота изображения */
+  width: ${CONSTANTS.SIZE.width}px;
+  height: ${CONSTANTS.SIZE.height}px;
 `;
 
 const IndianWomen = () => {

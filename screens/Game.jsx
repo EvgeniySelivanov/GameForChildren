@@ -214,9 +214,9 @@ const Game = () => {
         const yPosition = value.y;
         if (
           arrowPosition.x >= xPosition &&
-          arrowPosition.x <= xPosition + CONSTANTS.COIN_SIZE.width &&
+          arrowPosition.x <= xPosition + CONSTANTS.SIZE.width &&
           arrowPosition.y <= yPosition &&
-          arrowPosition.y + CONSTANTS.ARROW_SIZE.height >= yPosition
+          arrowPosition.y + CONSTANTS.SIZE.height >= yPosition
         ) {
           Animated.timing(coinPosition).stop();
           if (vibration) {
@@ -243,9 +243,9 @@ const Game = () => {
         const yPosition = value.y;
         if (
           arrowPosition.x >= xPosition &&
-          arrowPosition.x <= xPosition + CONSTANTS.INDIAN_SIZE.width &&
+          arrowPosition.x <= xPosition + CONSTANTS.SIZE.width &&
           arrowPosition.y <= yPosition - 190 &&
-          arrowPosition.y + CONSTANTS.ARROW_SIZE.height >= yPosition - 190
+          arrowPosition.y + CONSTANTS.SIZE.height >= yPosition - 190
         ) {
          
           gameOver();
@@ -263,9 +263,9 @@ const Game = () => {
         const yPosition = value.y;
         if (
           arrowPosition.x >= xPosition &&
-          arrowPosition.x <= xPosition + CONSTANTS.INDIAN_WOMEN_SIZE.width &&
+          arrowPosition.x <= xPosition + CONSTANTS.SIZE.width &&
           arrowPosition.y <= yPosition - 290 &&
-          arrowPosition.y + CONSTANTS.ARROW_SIZE.height >= yPosition - 290
+          arrowPosition.y + CONSTANTS.SIZE.height >= yPosition - 290
         ) {
           gameOver();
         }
@@ -282,9 +282,9 @@ const Game = () => {
         const yPosition = value.y;
         if (
           arrowPosition.x >= xPosition &&
-          arrowPosition.x <= xPosition + CONSTANTS.SHAMAN_SIZE.width &&
+          arrowPosition.x <= xPosition + CONSTANTS.SIZE.width &&
           arrowPosition.y <= yPosition - 390 &&
-          arrowPosition.y + CONSTANTS.ARROW_SIZE.height >= yPosition - 390
+          arrowPosition.y + CONSTANTS.SIZE.height >= yPosition - 390
         ) {
           gameOver();
         }

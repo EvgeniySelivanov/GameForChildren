@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import styled from 'styled-components/native';
 import { CONSTANTS } from '../constants';
-const image = require('../assets/shaman.png');
+const image = require('../assets/badObject.png');
 
 const ShamanImg = styled(Image)`
-  width: ${CONSTANTS.SHAMAN_SIZE.width}px; 
-  height: ${CONSTANTS.SHAMAN_SIZE.height}px;
+ width: ${CONSTANTS.SIZE.width}px;
+  height: ${CONSTANTS.SIZE.height}px;
 `;
 
 const Shaman = () => {

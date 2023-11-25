@@ -8,6 +8,7 @@ import ResetBtn from '../components/Btns/ResetBtn';
 import QuantityBtn from '../components/Btns/QuantityBtn';
 import VibroBtn from '../components/Btns/VibroBtn';
 import SoundBtn from '../components/Btns/SoundBtn';
+import ChangeUnitBtn from '../components/Btns/ChangeUnit';
 import * as Haptics from 'expo-haptics';
 
 const bgImage = require('../assets/bgMenu.png');
@@ -29,7 +30,16 @@ const StyledSetting = styled.Text`
 `;
 const Setting = () => {
   const contextValue=useContext(AppStateContext);
-  const {quantity,vibration,sound,music,updateQuantity,updateVibration,updateMusic,updateSound}=contextValue;
+  const {isDog,quantity,vibration,sound,music,updateQuantity,updateVibration,updateMusic,updateSound,changeUnit}=contextValue;
+  const changeDog=()=>{
+    if (isDog) {
+      changeUnit(false);
+    }else{
+      changeUnit(true);
+    }
+  }
+
+
   const changeVibro = () => {
     if (vibration) {
       updateVibration(false);
@@ -83,6 +93,7 @@ const Setting = () => {
         text={'Перешкоди :'}
         quantity={quantity}
       />
+      <ChangeUnitBtn onPress={changeDog}  text={'Зміна героя'}/>
       <VibroBtn onPress={changeVibro} vibro={vibration} text={'Вібрація'}/>
       <SoundBtn onPress={onMusic} music={music} text={"Музика"}/>
       <ResetBtn onPress={defaultOption} text={'За замовчуванням'} />

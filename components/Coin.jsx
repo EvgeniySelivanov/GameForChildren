@@ -1,16 +1,25 @@
-import React from 'react';
-import {View, ImageBackground} from 'react-native';
+import React, { useContext } from 'react';
+import { View, ImageBackground } from 'react-native';
 import styled from 'styled-components/native';
 import { CONSTANTS } from '../constants';
-const image = require('../assets/coin.png');
+import { AppStateContext } from '../screens/AppStateContext';
+
 const CoinImg = styled(ImageBackground)`
-  width: ${CONSTANTS.COIN_SIZE.width}px;
-  height: ${CONSTANTS.COIN_SIZE.height}px;
+ width: ${CONSTANTS.SIZE.width}px;
+  height: ${CONSTANTS.SIZE.height}px;
 `;
 const Coin = () => {
-  return (
-    <CoinImg source={image}></CoinImg>
+  const contextValue = useContext(AppStateContext);
+  const { isDog } = contextValue;
+
+  const imageDog = require('../assets/dogFood.png');
+  const imageCat = require('../assets/catFood.png');
+
+  return isDog ? (
+    <CoinImg source={imageDog}></CoinImg>
+  ) : (
+    <CoinImg source={imageCat}></CoinImg>
   );
-}
+};
 
 export default Coin;
