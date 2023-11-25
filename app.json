@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "GameForChildren",
+    "slug": "GameForChildren",
+    "developer": {
+      "name": "Yevheniy Selivanov",
+      "contact": "genyaselivanovzp@gmail.com"
+    },
+    "version": "1.0.0",
+    "permissions": [
+      "CAMERA",
+      "AUDIO_RECORDING",
+      "LOCATION",
+      "CALENDAR"
+    ],
+    "orientation": "portrait",
+    "icon": "./assets/iconApk.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/iconApk.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.evhenyi.GameForChildren"
+    },
+    "web": {
+      "favicon": ""
+    }
+   
+  }
+}
