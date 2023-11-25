@@ -7,12 +7,7 @@
       "contact": "genyaselivanovzp@gmail.com"
     },
     "version": "1.0.0",
-    "permissions": [
-      "CAMERA",
-      "AUDIO_RECORDING",
-      "LOCATION",
-      "CALENDAR"
-    ],
+    "permissions": ["CAMERA", "AUDIO_RECORDING", "LOCATION", "CALENDAR"],
     "orientation": "portrait",
     "icon": "./assets/iconApk.png",
     "userInterfaceStyle": "light",
@@ -21,12 +16,8 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
+    "assetBundlePatterns": ["**/*"],
+
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "",
@@ -34,9 +25,18 @@
       },
       "package": "com.evhenyi.GameForChildren"
     },
+    "privacy": "public",
+    "platforms": ["android"],
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#000000"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+
     "web": {
-      "favicon": ""
+      "favicon": "./assets/iconApk.png"
     }
-   
   }
 }
