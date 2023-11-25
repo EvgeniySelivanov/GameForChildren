@@ -8,7 +8,7 @@ const StartMessage = ({isGameRun}) => {
             <Text></Text>
           ) : (
             <Text style={styles.buttonGameOver}>
-              Touch  to play.
+              Доторкнись до екрану.
             </Text>
           )}
         </View>

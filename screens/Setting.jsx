@@ -8,6 +8,7 @@ import ResetBtn from '../components/Btns/ResetBtn';
 import QuantityBtn from '../components/Btns/QuantityBtn';
 import VibroBtn from '../components/Btns/VibroBtn';
 import SoundBtn from '../components/Btns/SoundBtn';
+import * as Haptics from 'expo-haptics';
 
 const bgImage = require('../assets/bgMenu.png');
 const Space = styled(ImageBackground)`
@@ -33,6 +34,7 @@ const Setting = () => {
     if (vibration) {
       updateVibration(false);
     }else{
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)
       updateVibration(true);
     }
   };
@@ -75,13 +77,13 @@ const Setting = () => {
  
   return (
     <Space source={bgImage}>
-      <StyledSetting>Setting</StyledSetting>
+      <StyledSetting>Налаштування</StyledSetting>
        <QuantityBtn
         onPress={changeQuantity}
-        text={'Кількість об\'єктів:'}
+        text={'Перешкоди :'}
         quantity={quantity}
       />
-      <VibroBtn onPress={changeVibro} vibro={vibration} text={'Vibration'}/>
+      <VibroBtn onPress={changeVibro} vibro={vibration} text={'Вібрація'}/>
       <SoundBtn onPress={onMusic} music={music} text={"Музика"}/>
       <ResetBtn onPress={defaultOption} text={'За замовчуванням'} />
     </Space>

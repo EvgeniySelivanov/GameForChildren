@@ -16,7 +16,7 @@ const QuantityBtn = ({ onPress, text,quantity }) => {
     <TouchableOpacity onPress={onPress} style={styles.button}>
       <Text style={styles.buttonText}>{text}</Text>
       <Span>{quantity}</Span>
-      <MaterialCommunityIcons name="food-drumstick" size={30} color="brown" />
+      <MaterialCommunityIcons name="alarm-light" size={30} color="red" />
     </TouchableOpacity>
   );
 };

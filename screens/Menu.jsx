@@ -38,7 +38,7 @@ const StyledMenu = styled.Text`
 const Menu = () => {
   const navigation = useNavigation();
   const play = () => {
-    navigation.navigate('SportSprint');
+    navigation.navigate('Game');
   };
   const setting = () => {
     navigation.navigate('Setting');

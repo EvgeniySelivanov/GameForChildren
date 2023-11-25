@@ -2,7 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppStateProvider } from './AppStateContext';
-import SportSprint from './SportSprint';
+import Game from './Game';
 import Menu from './Menu';
 import Setting from './Setting';
 
@@ -18,8 +18,8 @@ const Navigation = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="SportSprint"
-          component={SportSprint}
+          name="Game"
+          component={Game}
           options={{ headerShown: false }}
         />
         <Stack.Screen
