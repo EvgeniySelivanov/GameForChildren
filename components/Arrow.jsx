@@ -10,7 +10,6 @@ const cat = require('../assets/cat.png');
 const ArrowImg = styled(ImageBackground)`
   width: ${CONSTANTS.HERO_SIZE.width}px;
   height: ${CONSTANTS.HERO_SIZE.height}px;
-  resizeMode: 'cover'; 
 `;
 const Arrow = ({ arrowValueChange }) => {
   const contextValue = useContext(AppStateContext);

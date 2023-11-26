@@ -43,14 +43,7 @@ const Setting = () => {
     changeUnit,
   } = contextValue;
 
-  useEffect(() => {
-    return sound
-      ? () => {
-          console.log('Unloading Sound');
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, [sound]);
+  
 
   const changeDog = () => {
     if (isDog) {

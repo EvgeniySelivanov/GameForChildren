@@ -42,6 +42,7 @@ const ScoreText = styled.Text`
 
 
 const Game = () => {
+  
   const contextValue = useContext(AppStateContext);
   const { quantity, updateQuantity, vibration } = contextValue;
   let arrowPosition = {
@@ -399,7 +400,7 @@ const Game = () => {
             { transform: indianPosition.getTranslateTransform() },
           ]}
         >
-          <Indian />
+          <Indian index={Math.floor(Math.random() * 3)}/>
         </Animated.View>
         <Animated.View
           style={[
@@ -411,7 +412,7 @@ const Game = () => {
           ]}
           ref={indianWomenPosition}
         >
-          <IndianWomen />
+          <IndianWomen index={Math.floor(Math.random() * 3)}/>
         </Animated.View>
         <Animated.View
           style={[
@@ -423,7 +424,7 @@ const Game = () => {
           ]}
           ref={shamanPosition}
         >
-          <Shaman />
+          <Shaman index={Math.floor(Math.random() * 3)}/>
         </Animated.View>
         <ScoreText>Бали:{isGameRun ? coin.quant : 0}<MaterialCommunityIcons name="star-four-points" size={42} color="white" /></ScoreText>
         <StartMessage isGameRun={isGameRun} />

@@ -30,7 +30,8 @@
     "react-native-web": "~0.19.6",
     "react-native-webview": "^13.3.1",
     "styled-components": "^6.0.7",
-    "expo-haptics": "~12.4.0"
+    "expo-haptics": "~12.4.0",
+    "expo-asset": "~8.10.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
