@@ -1,5 +1,5 @@
-import React , {useContext,useState } from 'react';
-import {View, Text,ImageBackground} from 'react-native';
+import React, { useContext, useState, useEffect } from 'react';
+import { View, Text, ImageBackground } from 'react-native';
 import { Audio } from 'expo-av';
 import styled from 'styled-components/native';
 import { CONSTANTS } from '../constants';
@@ -29,78 +29,100 @@ const StyledSetting = styled.Text`
   padding: 7px;
 `;
 const Setting = () => {
-  const contextValue=useContext(AppStateContext);
-  const {isDog,quantity,vibration,sound,music,updateQuantity,updateVibration,updateMusic,updateSound,changeUnit}=contextValue;
-  const changeDog=()=>{
+  const contextValue = useContext(AppStateContext);
+  const {
+    isDog,
+    quantity,
+    vibration,
+    sound,
+    music,
+    updateQuantity,
+    updateVibration,
+    updateMusic,
+    updateSound,
+    changeUnit,
+  } = contextValue;
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log('Unloading Sound');
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
+  const changeDog = () => {
     if (isDog) {
       changeUnit(false);
-    }else{
+    } else {
       changeUnit(true);
     }
-  }
-
+  };
 
   const changeVibro = () => {
     if (vibration) {
       updateVibration(false);
-    }else{
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)
+    } else {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       updateVibration(true);
     }
   };
   const changeQuantity = () => {
-    if (quantity <= 2) {
-      updateQuantity((quantity) => quantity + 1);
+    if (quantity > 1) {
+      updateQuantity((quantity) => quantity - 1);
     }
-    
   };
   const defaultOption = () => {
     updateVibration(false);
     updateQuantity(CONSTANTS.INDIANS_QUANTITY);
     stopMusic();
-     
   };
+
   async function playSound() {
     const { sound } = await Audio.Sound.createAsync(
-      require('../assets/music.mp3')
+      require('../assets/audio/music.mp3'),
+      {},
+      null,
+      true
     );
     await updateSound(sound);
     await sound.playAsync(); // Проигрывание аудио
   }
+
   const stopMusic = async () => {
-    if(sound){
+    if (sound) {
       await sound.stopAsync();
     }
-    
+
     updateMusic(false);
   };
   const onMusic = () => {
-    console.log("work onMusic",music );
-    if(music){
+    console.log('work onMusic', music);
+    if (music) {
       stopMusic();
       updateMusic(false);
     }
-   if(!music){
-    updateMusic(true);
-    playSound();}
+    if (!music) {
+      updateMusic(true);
+      playSound();
+    }
   };
- 
+
   return (
     <Space source={bgImage}>
       <StyledSetting>Налаштування</StyledSetting>
-       <QuantityBtn
+      <QuantityBtn
         onPress={changeQuantity}
         text={'Перешкоди :'}
         quantity={quantity}
       />
-      <ChangeUnitBtn onPress={changeDog}  text={'Зміна героя'}/>
-      <VibroBtn onPress={changeVibro} vibro={vibration} text={'Вібрація'}/>
-      <SoundBtn onPress={onMusic} music={music} text={"Музика"}/>
+      <ChangeUnitBtn onPress={changeDog} text={'Зміна героя'} />
+      <VibroBtn onPress={changeVibro} vibro={vibration} text={'Вібрація'} />
+      <SoundBtn onPress={onMusic} music={music} text={'Музика'} />
       <ResetBtn onPress={defaultOption} text={'За замовчуванням'} />
     </Space>
   );
-}
-
-
+};
 
 export default Setting;

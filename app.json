@@ -1,13 +1,21 @@
 {
   "expo": {
+    "plugins": [
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow $(GameForChildren) to access your microphone."
+        }
+      ]
+    ],
     "name": "GameForChildren",
     "slug": "GameForChildren",
+    "description":"Made for Vredina Tanya",
     "developer": {
       "name": "Yevheniy Selivanov",
       "contact": "genyaselivanovzp@gmail.com"
     },
     "version": "1.0.0",
-    "permissions": ["CAMERA", "AUDIO_RECORDING", "LOCATION", "CALENDAR"],
     "orientation": "portrait",
     "icon": "./assets/iconApk.png",
     "userInterfaceStyle": "light",
@@ -16,9 +24,24 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
-
+    "assetBundlePatterns": [
+      "**/*",
+      "assets/audio/*"
+    ],
     "android": {
+      "permissions": [
+        "LOCATION_HARDWARE",
+        "FOREGROUND_SERVICE_MEDIA_PLAYBACK",
+        "CAPTURE_AUDIO_OUTPUT",
+        "CAMERA",
+        "MANAGE_DEVICE_POLICY_AUDIO_OUTPUT",
+        "MODIFY_AUDIO_SETTINGS",
+        "READ_MEDIA_AUDIO",
+        "RECORD_AUDIO",
+        "INTERNET",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "",
         "backgroundColor": "#ffffff"
@@ -26,7 +49,9 @@
       "package": "com.evhenyi.GameForChildren"
     },
     "privacy": "public",
-    "platforms": ["android"],
+    "platforms": [
+      "android"
+    ],
     "androidStatusBar": {
       "barStyle": "light-content",
       "backgroundColor": "#000000"
@@ -34,9 +59,13 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-
     "web": {
       "favicon": "./assets/iconApk.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f4f38ec7-3666-4e6a-bad3-2e5783103416"
+      }
     }
   }
 }

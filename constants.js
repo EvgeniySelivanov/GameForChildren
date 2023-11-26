@@ -8,7 +8,7 @@ export const CONSTANTS = {
   INDIAN_WOMEN_POSITION: { x: 80, y:-290 },
   SHAMAN_POSITION: { x: 200, y:-390 },
   SIZE: { width: 40, height: 40 },
-  INDIANS_QUANTITY: 1,
+  INDIANS_QUANTITY: 3,
   GAME_VIBRO:false,
   GAME_SPEED:14000,
 };
