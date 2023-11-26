@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import styled from 'styled-components/native';
 import { CONSTANTS } from '../constants';
-const image = require('../assets/badFood1.png');
+
 
 const IndianImg = styled(Image)`
  width: ${CONSTANTS.SIZE.width}px;
@@ -10,6 +10,8 @@ const IndianImg = styled(Image)`
 `;
 
 const Indian = () => {
+  const image = require('../assets/badFood1.png');
+
   return <IndianImg source={image}></IndianImg>;
 };
 

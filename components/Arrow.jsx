@@ -8,8 +8,9 @@ const dog = require('../assets/dog.png');
 const cat = require('../assets/cat.png');
 
 const ArrowImg = styled(ImageBackground)`
-  width: ${CONSTANTS.SIZE.width}px;
-  height: ${CONSTANTS.SIZE.height}px;
+  width: ${CONSTANTS.HERO_SIZE.width}px;
+  height: ${CONSTANTS.HERO_SIZE.height}px;
+  resizeMode: 'cover'; 
 `;
 const Arrow = ({ arrowValueChange }) => {
   const contextValue = useContext(AppStateContext);
@@ -45,8 +46,8 @@ const Arrow = ({ arrowValueChange }) => {
 const styles = StyleSheet.create({
   draggable: {
     position: 'absolute',
-    width: 40,
-    height: 40,
+    width: 80,
+    height: 80,
     zIndex: 10,
   },
 });

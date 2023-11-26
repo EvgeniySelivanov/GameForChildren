@@ -216,7 +216,7 @@ const Game = () => {
           arrowPosition.x >= xPosition &&
           arrowPosition.x <= xPosition + CONSTANTS.SIZE.width &&
           arrowPosition.y <= yPosition &&
-          arrowPosition.y + CONSTANTS.SIZE.height >= yPosition
+          arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition
         ) {
           Animated.timing(coinPosition).stop();
           if (vibration) {
@@ -245,7 +245,7 @@ const Game = () => {
           arrowPosition.x >= xPosition &&
           arrowPosition.x <= xPosition + CONSTANTS.SIZE.width &&
           arrowPosition.y <= yPosition - 190 &&
-          arrowPosition.y + CONSTANTS.SIZE.height >= yPosition - 190
+          arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition - 190
         ) {
          
           gameOver();
@@ -265,7 +265,7 @@ const Game = () => {
           arrowPosition.x >= xPosition &&
           arrowPosition.x <= xPosition + CONSTANTS.SIZE.width &&
           arrowPosition.y <= yPosition - 290 &&
-          arrowPosition.y + CONSTANTS.SIZE.height >= yPosition - 290
+          arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition - 290
         ) {
           gameOver();
         }
@@ -284,7 +284,7 @@ const Game = () => {
           arrowPosition.x >= xPosition &&
           arrowPosition.x <= xPosition + CONSTANTS.SIZE.width &&
           arrowPosition.y <= yPosition - 390 &&
-          arrowPosition.y + CONSTANTS.SIZE.height >= yPosition - 390
+          arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition - 390
         ) {
           gameOver();
         }

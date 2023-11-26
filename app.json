@@ -13,8 +13,10 @@
     "description":"Made for Vredina Tanya",
     "developer": {
       "name": "Yevheniy Selivanov",
-      "contact": "genyaselivanovzp@gmail.com"
+      "email": "genyaselivanovzp@gmail.com",
+      "url": "https://github.com/EvgeniySelivanov"
     },
+    "owner":"Evheniy Selivanov",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/iconApk.png",
@@ -30,6 +32,7 @@
     ],
     "android": {
       "permissions": [
+        "ACCESS_BACKGROUND_LOCATION",
         "LOCATION_HARDWARE",
         "FOREGROUND_SERVICE_MEDIA_PLAYBACK",
         "CAPTURE_AUDIO_OUTPUT",
