@@ -23,7 +23,6 @@ import IndianWomen from '../components/IndianWomen';
 import Shaman from '../components/Shaman';
 import * as Haptics from 'expo-haptics';
 
-
 const bgImage = require('../assets/bgGame.png');
 const Space = styled(ImageBackground)`
   flex: 1;
@@ -40,9 +39,7 @@ const ScoreText = styled.Text`
   font-weight: 700;
 `;
 
-
 const Game = () => {
-  
   const contextValue = useContext(AppStateContext);
   const { quantity, updateQuantity, vibration } = contextValue;
   let arrowPosition = {
@@ -55,6 +52,7 @@ const Game = () => {
   const [speed, setSpeed] = useState(CONSTANTS.GAME_SPEED);
   const route = useRoute();
   const [isGameRun, setIsGameRun] = useState(false);
+
   const [coin, setCoin] = useState({ quant: 0, visibility: true });
 
   //position obtacles
@@ -222,7 +220,7 @@ const Game = () => {
           Animated.timing(coinPosition).stop();
           if (vibration) {
             Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-          };
+          }
           setCoin((coin) => ({
             ...coin,
             quant: coin.quant + 1,
@@ -248,7 +246,6 @@ const Game = () => {
           arrowPosition.y <= yPosition - 190 &&
           arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition - 190
         ) {
-         
           gameOver();
         }
       });
@@ -299,7 +296,7 @@ const Game = () => {
   const gameOver = async () => {
     if (vibration) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-    };
+    }
     await setIsGameRun(false);
     await Animated.timing(indianWomenPosition).stop();
     await Animated.timing(shamanPosition).stop();
@@ -400,7 +397,7 @@ const Game = () => {
             { transform: indianPosition.getTranslateTransform() },
           ]}
         >
-          <Indian index={Math.floor(Math.random() * 3)}/>
+          <Indian index={Math.floor(Math.random() * 3)} />
         </Animated.View>
         <Animated.View
           style={[
@@ -412,7 +409,7 @@ const Game = () => {
           ]}
           ref={indianWomenPosition}
         >
-          <IndianWomen index={Math.floor(Math.random() * 3)}/>
+          <IndianWomen index={Math.floor(Math.random() * 3)} />
         </Animated.View>
         <Animated.View
           style={[
@@ -424,10 +421,17 @@ const Game = () => {
           ]}
           ref={shamanPosition}
         >
-          <Shaman index={Math.floor(Math.random() * 3)}/>
+          <Shaman index={Math.floor(Math.random() * 3)} />
         </Animated.View>
-        <ScoreText>Бали:{isGameRun ? coin.quant : 0}<MaterialCommunityIcons name="star-four-points" size={42} color="white" /></ScoreText>
-        <StartMessage isGameRun={isGameRun} />
+        <ScoreText>
+          Бали:{isGameRun ? coin.quant : 0}
+          <MaterialCommunityIcons
+            name="star-four-points"
+            size={42}
+            color="white"
+          />
+        </ScoreText>
+        <StartMessage isGameRun={isGameRun}/>
         <Arrow arrowValueChange={arrowValueChange} />
       </Space>
     </TouchableWithoutFeedback>

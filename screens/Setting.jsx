@@ -1,13 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, ImageBackground } from 'react-native';
-import { Audio } from 'expo-av';
 import styled from 'styled-components/native';
 import { CONSTANTS } from '../constants';
 import { AppStateContext } from './AppStateContext';
 import ResetBtn from '../components/Btns/ResetBtn';
 import QuantityBtn from '../components/Btns/QuantityBtn';
 import VibroBtn from '../components/Btns/VibroBtn';
-import SoundBtn from '../components/Btns/SoundBtn';
 import ChangeUnitBtn from '../components/Btns/ChangeUnit';
 import * as Haptics from 'expo-haptics';
 
@@ -34,16 +32,10 @@ const Setting = () => {
     isDog,
     quantity,
     vibration,
-    sound,
-    music,
     updateQuantity,
     updateVibration,
-    updateMusic,
-    updateSound,
     changeUnit,
   } = contextValue;
-
-  
 
   const changeDog = () => {
     if (isDog) {
@@ -69,37 +61,6 @@ const Setting = () => {
   const defaultOption = () => {
     updateVibration(false);
     updateQuantity(CONSTANTS.INDIANS_QUANTITY);
-    stopMusic();
-  };
-
-  async function playSound() {
-    const { sound } = await Audio.Sound.createAsync(
-      require('../assets/audio/music.mp3'),
-      {},
-      null,
-      true
-    );
-    await updateSound(sound);
-    await sound.playAsync(); // Проигрывание аудио
-  }
-
-  const stopMusic = async () => {
-    if (sound) {
-      await sound.stopAsync();
-    }
-
-    updateMusic(false);
-  };
-  const onMusic = () => {
-    console.log('work onMusic', music);
-    if (music) {
-      stopMusic();
-      updateMusic(false);
-    }
-    if (!music) {
-      updateMusic(true);
-      playSound();
-    }
   };
 
   return (
@@ -112,7 +73,6 @@ const Setting = () => {
       />
       <ChangeUnitBtn onPress={changeDog} text={'Зміна героя'} />
       <VibroBtn onPress={changeVibro} vibro={vibration} text={'Вібрація'} />
-      <SoundBtn onPress={onMusic} music={music} text={'Музика'} />
       <ResetBtn onPress={defaultOption} text={'За замовчуванням'} />
     </Space>
   );

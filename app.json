@@ -1,22 +1,15 @@
 {
   "expo": {
-    "plugins": [
-      [
-        "expo-av",
-        {
-          "microphonePermission": "Allow $(GameForChildren) to access your microphone."
-        }
-      ]
-    ],
+    
     "name": "Cat&Dog",
-    "slug": "Cat&Dog",
+    "slug": "GameForChildren",
     "description":"Made for Vredina Tanya",
     "developer": {
       "name": "Yevheniy Selivanov",
       "email": "genyaselivanovzp@gmail.com",
       "url": "https://github.com/EvgeniySelivanov"
     },
-    "owner":"Evheniy Selivanov",
+    
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
