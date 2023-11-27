@@ -212,8 +212,8 @@ const Game = () => {
         const xPosition = value.x;
         const yPosition = value.y;
         if (
-          arrowPosition.x >= xPosition &&
-          arrowPosition.x <= xPosition + CONSTANTS.SIZE.width &&
+          xPosition >= arrowPosition.x &&
+          xPosition<= arrowPosition.x  + CONSTANTS.HERO_SIZE.width &&
           arrowPosition.y <= yPosition &&
           arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition
         ) {
@@ -241,8 +241,8 @@ const Game = () => {
         const xPosition = value.x;
         const yPosition = value.y;
         if (
-          arrowPosition.x >= xPosition &&
-          arrowPosition.x <= xPosition + CONSTANTS.SIZE.width &&
+          xPosition >= arrowPosition.x &&
+          xPosition<= arrowPosition.x  + CONSTANTS.HERO_SIZE.width &&
           arrowPosition.y <= yPosition - 190 &&
           arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition - 190
         ) {
@@ -260,8 +260,8 @@ const Game = () => {
         const xPosition = value.x;
         const yPosition = value.y;
         if (
-          arrowPosition.x >= xPosition &&
-          arrowPosition.x <= xPosition + CONSTANTS.SIZE.width &&
+          xPosition >= arrowPosition.x &&
+          xPosition<= arrowPosition.x  + CONSTANTS.HERO_SIZE.width &&
           arrowPosition.y <= yPosition - 290 &&
           arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition - 290
         ) {
@@ -279,8 +279,8 @@ const Game = () => {
         const xPosition = value.x;
         const yPosition = value.y;
         if (
-          arrowPosition.x >= xPosition &&
-          arrowPosition.x <= xPosition + CONSTANTS.SIZE.width &&
+          xPosition >= arrowPosition.x &&
+          xPosition<= arrowPosition.x  + CONSTANTS.HERO_SIZE.width &&
           arrowPosition.y <= yPosition - 390 &&
           arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition - 390
         ) {
@@ -431,7 +431,7 @@ const Game = () => {
             color="white"
           />
         </ScoreText>
-        <StartMessage isGameRun={isGameRun}/>
+        <StartMessage isGameRun={isGameRun} />
         <Arrow arrowValueChange={arrowValueChange} />
       </Space>
     </TouchableWithoutFeedback>
