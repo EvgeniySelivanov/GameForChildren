@@ -8,8 +8,8 @@
         }
       ]
     ],
-    "name": "GameForChildren",
-    "slug": "GameForChildren",
+    "name": "Cat&Dog",
+    "slug": "Cat&Dog",
     "description":"Made for Vredina Tanya",
     "developer": {
       "name": "Yevheniy Selivanov",
@@ -19,7 +19,7 @@
     "owner":"Evheniy Selivanov",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/iconApk.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/iconApk.png",
