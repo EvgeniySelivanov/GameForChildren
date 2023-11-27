@@ -14,8 +14,10 @@
       "developmentClient": true
     },
     "production": {
+      "credentialsSource":"remote",
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease"
       },
       "node":"18.18.2"
     }

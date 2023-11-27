@@ -3,13 +3,13 @@
     
     "name": "Cat&Dog",
     "slug": "GameForChildren",
-    "description":"Made for Vredina Tanya",
+    "description":"Made for Tanya Skorik",
     "developer": {
       "name": "Yevheniy Selivanov",
       "email": "genyaselivanovzp@gmail.com",
       "url": "https://github.com/EvgeniySelivanov"
     },
-    
+    "githubUrl":"https://github.com/EvgeniySelivanov/GameForChildren",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,7 +17,7 @@
     "splash": {
       "image": "./assets/iconApk.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#cceeff"
     },
     "assetBundlePatterns": [
       "**/*",
