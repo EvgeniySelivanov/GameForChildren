@@ -10,7 +10,7 @@ export const CONSTANTS = {
   SHAMAN_POSITION: { x: 200, y:-490 },
   SIZE: { width: 60, height: 60 },
   HERO_SIZE: { width: 80, height: 80 },
-  INDIANS_QUANTITY: 4,
+  INDIANS_QUANTITY: 5,
   GAME_VIBRO:false,
   GAME_SPEED:14000,
 };

@@ -54,7 +54,9 @@ const Setting = () => {
     }
   };
   const changeQuantity = () => {
-    if (quantity > 1) {
+    if (quantity ===5) {
+      updateQuantity((quantity) => quantity - 2);
+    } else if (quantity === 3) {
       updateQuantity((quantity) => quantity - 1);
     }
   };

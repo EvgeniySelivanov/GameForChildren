@@ -96,7 +96,7 @@ const Game = () => {
           x: getRandom(),
           y: CONSTANTS.INDIAN_POSITION.y,
         });
-        if (quantity === 1 && speed >= 2000) {
+        if (quantity === 2 && speed >= 2000) {
           coinPosition.setValue({
             x: getRandom(),
             y: CONSTANTS.COIN_POSITION.y,
@@ -105,18 +105,10 @@ const Game = () => {
             ...coin,
             visibility: true,
           }));
-          goodObjectPosition.setValue({
-            x: getRandom(),
-            y: CONSTANTS.GOOD_OBJECT_POSITION.y,
-          });
-          setGoodObject((goodObject) => ({
-            ...goodObject,
-            visibility: true,
-          }));
           setSpeed((speed) => speed - 600);
           moveCoin();
           moveIndian();
-        } else if (quantity === 1 && speed <= 2000) {
+        } else if (quantity === 2 && speed <= 2000) {
           coinPosition.setValue({
             x: getRandom(),
             y: CONSTANTS.COIN_POSITION.y,
@@ -145,7 +137,7 @@ const Game = () => {
           x: getRandom(),
           y: CONSTANTS.INDIAN_WOMEN_POSITION.y,
         });
-        if (quantity === 2 && speed >= 2000 && isGameRun != false) {
+        if (quantity === 3 && speed >= 2000 && isGameRun != false) {
           coinPosition.setValue({
             x: getRandom(),
             y: CONSTANTS.COIN_POSITION.y,
@@ -154,18 +146,25 @@ const Game = () => {
             ...coin,
             visibility: true,
           }));
-
+          setGoodObject((goodObject) => ({
+            ...goodObject,
+            visibility: true,
+          }));
           setSpeed((speed) => speed - 600);
           moveCoin();
           moveIndian();
           moveIndianWomen();
-        } else if (quantity === 2 && speed <= 2000 && isGameRun != false) {
+        } else if (quantity === 3 && speed <= 2000 && isGameRun != false) {
           coinPosition.setValue({
             x: getRandom(),
             y: CONSTANTS.COIN_POSITION.y,
           });
           setCoin((coin) => ({
             ...coin,
+            visibility: true,
+          }));
+          setGoodObject((goodObject) => ({
+            ...goodObject,
             visibility: true,
           }));
           moveCoin();
@@ -183,17 +182,14 @@ const Game = () => {
         duration: speed, // Длительность анимации в миллисекундах
         useNativeDriver: false, // Используем JavaScript анимацию
         easing: Easing.linear,
-      }).start(() => {
+      }).start(() => { 
+
         console.log(isGameRun);
         goodObjectPosition.setValue({
           x: getRandom(),
           y: CONSTANTS.GOOD_OBJECT_POSITION.y,
-        });
-        setGoodObject((goodObject) => ({
-          ...goodObject,
-          visibility: true,
-        }));
-        if (quantity === 3 && speed >= 2000 && isGameRun != false) {
+        });       
+        if (quantity === 4 && speed >= 2000 && isGameRun != false) {
           coinPosition.setValue({
             x: getRandom(),
             y: CONSTANTS.COIN_POSITION.y,
@@ -201,14 +197,13 @@ const Game = () => {
           setCoin((coin) => ({
             ...coin,
             visibility: true,
-          }));
-
+          }));      
           setSpeed((speed) => speed - 600);
           moveCoin();
           moveIndian();
           moveIndianWomen();
           moveGoodObject();
-        } else if (quantity === 3 && speed <= 2000 && isGameRun != false) {
+        } else if (quantity === 4 && speed <= 2000 && isGameRun != false) {
           coinPosition.setValue({
             x: getRandom(),
             y: CONSTANTS.COIN_POSITION.y,
@@ -216,7 +211,7 @@ const Game = () => {
           setCoin((coin) => ({
             ...coin,
             visibility: true,
-          }));
+          }));       
           moveCoin();
           moveIndian();
           moveIndianWomen();
@@ -238,7 +233,7 @@ const Game = () => {
           x: getRandom(),
           y: CONSTANTS.SHAMAN_POSITION.y,
         });
-        if (quantity === 4 && (speed >= 2000) & (isGameRun != false)) {
+        if (quantity === 5 && (speed >= 2000) & (isGameRun != false)) {
           coinPosition.setValue({
             x: getRandom(),
             y: CONSTANTS.COIN_POSITION.y,
@@ -257,7 +252,7 @@ const Game = () => {
           moveIndianWomen();
           moveGoodObject();
           moveShaman();
-        } else if (quantity === 4 && (speed <= 2000) & (isGameRun != false)) {
+        } else if (quantity === 5 && (speed <= 2000) & (isGameRun != false)) {
           coinPosition.setValue({
             x: getRandom(),
             y: CONSTANTS.COIN_POSITION.y,
@@ -316,8 +311,8 @@ const Game = () => {
         if (
           xPosition >= arrowPosition.x &&
           xPosition <= arrowPosition.x + CONSTANTS.HERO_SIZE.width &&
-          arrowPosition.y <= yPosition-390 &&
-          arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition-390
+          arrowPosition.y <= yPosition - 390 &&
+          arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition - 390
         ) {
           Animated.timing(goodObjectPosition).stop();
           if (vibration) {
@@ -416,6 +411,10 @@ const Game = () => {
       x: getRandom(),
       y: CONSTANTS.INDIAN_WOMEN_POSITION.y,
     });
+    await goodObjectPosition.setValue({
+      x: getRandom(),
+      y: CONSTANTS.INDIAN_POSITION.y,
+    });
     await shamanPosition.setValue({
       x: getRandom(),
       y: CONSTANTS.SHAMAN_POSITION.y,
@@ -443,6 +442,14 @@ const Game = () => {
       x: getRandom(),
       y: CONSTANTS.SHAMAN_POSITION.y,
     });
+    await goodObjectPosition.setValue({
+      x: getRandom(),
+      y: CONSTANTS.GOOD_OBJECT_POSITION.y,
+    });
+     setGoodObject((goodObject) => ({
+      ...goodObject,
+      visibility: true,
+    }));
     coinPosition.setValue({
       x: getRandom(),
       y: CONSTANTS.COIN_POSITION.y,
@@ -451,28 +458,21 @@ const Game = () => {
       ...coin,
       visibility: true,
     }));
-    goodObjectPosition.setValue({
-      x: getRandom(),
-      y: CONSTANTS.GOOD_OBJECT_POSITION.y,
-    });
-    setGoodObject((goodObject) => ({
-      ...goodObject,
-      visibility: true,
-    }));
-    if (quantity === 1) {
+   
+    
+    if (quantity === 2) {
       moveCoin();
       moveIndian();
-      moveGoodObject();
-    } else if (quantity === 2) {
-      moveCoin();
-      moveIndian();
-      moveIndianWomen();
     } else if (quantity === 3) {
       moveCoin();
       moveIndian();
       moveIndianWomen();
-      moveGoodObject();
     } else if (quantity === 4) {
+      moveCoin();
+      moveIndian();
+      moveIndianWomen();
+      moveGoodObject();
+    } else if (quantity === 5) {
       moveCoin();
       moveIndian();
       moveIndianWomen();
@@ -508,7 +508,7 @@ const Game = () => {
             { transform: coinPosition.getTranslateTransform() },
           ]}
         >
-          {coin.visibility && <Coin />}
+          {coin.visibility && <Coin index={Math.floor(Math.random() * 6)} />}
         </Animated.View>
 
         <Animated.View
@@ -517,7 +517,9 @@ const Game = () => {
             { transform: goodObjectPosition.getTranslateTransform() },
           ]}
         >
-          {goodObject.visibility && <GoodObject index={0} />}
+          {goodObject.visibility && (
+            <GoodObject index={Math.floor(Math.random() * 6)} />
+          )}
         </Animated.View>
         <Animated.View
           style={[
