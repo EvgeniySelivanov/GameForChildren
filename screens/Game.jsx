@@ -18,6 +18,7 @@ import Header from '../components/Header';
 import Decoration from '../components/Decoration';
 import Arrow from '../components/Arrow';
 import Coin from '../components/Coin';
+import GoodObject from '../components/GoodObject';
 import Indian from '../components/Indian';
 import IndianWomen from '../components/IndianWomen';
 import Shaman from '../components/Shaman';
@@ -52,12 +53,15 @@ const Game = () => {
   const [speed, setSpeed] = useState(CONSTANTS.GAME_SPEED);
   const route = useRoute();
   const [isGameRun, setIsGameRun] = useState(false);
-
+  const [goodObject, setGoodObject] = useState({ quant: 0, visibility: true });
   const [coin, setCoin] = useState({ quant: 0, visibility: true });
 
   //position obtacles
   const coinPosition = useRef(
     new Animated.ValueXY(CONSTANTS.COIN_POSITION)
+  ).current;
+  const goodObjectPosition = useRef(
+    new Animated.ValueXY(CONSTANTS.GOOD_OBJECT_POSITION)
   ).current;
   const indianPosition = useRef(new Animated.ValueXY(0)).current;
   const indianWomenPosition = useRef(new Animated.ValueXY(0)).current;
@@ -79,6 +83,7 @@ const Game = () => {
       }).start();
     }
   };
+
   moveIndian = () => {
     if (isGameRun) {
       Animated.timing(indianPosition, {
@@ -98,6 +103,14 @@ const Game = () => {
           });
           setCoin((coin) => ({
             ...coin,
+            visibility: true,
+          }));
+          goodObjectPosition.setValue({
+            x: getRandom(),
+            y: CONSTANTS.GOOD_OBJECT_POSITION.y,
+          });
+          setGoodObject((goodObject) => ({
+            ...goodObject,
             visibility: true,
           }));
           setSpeed((speed) => speed - 600);
@@ -141,6 +154,7 @@ const Game = () => {
             ...coin,
             visibility: true,
           }));
+
           setSpeed((speed) => speed - 600);
           moveCoin();
           moveIndian();
@@ -162,6 +176,56 @@ const Game = () => {
     }
   };
 
+  moveGoodObject = () => {
+    if (isGameRun) {
+      Animated.timing(goodObjectPosition, {
+        toValue: { x: getRandom(), y: CONSTANTS.SCREEN_HEIGHT + 550 },
+        duration: speed, // Длительность анимации в миллисекундах
+        useNativeDriver: false, // Используем JavaScript анимацию
+        easing: Easing.linear,
+      }).start(() => {
+        console.log(isGameRun);
+        goodObjectPosition.setValue({
+          x: getRandom(),
+          y: CONSTANTS.GOOD_OBJECT_POSITION.y,
+        });
+        setGoodObject((goodObject) => ({
+          ...goodObject,
+          visibility: true,
+        }));
+        if (quantity === 3 && speed >= 2000 && isGameRun != false) {
+          coinPosition.setValue({
+            x: getRandom(),
+            y: CONSTANTS.COIN_POSITION.y,
+          });
+          setCoin((coin) => ({
+            ...coin,
+            visibility: true,
+          }));
+
+          setSpeed((speed) => speed - 600);
+          moveCoin();
+          moveIndian();
+          moveIndianWomen();
+          moveGoodObject();
+        } else if (quantity === 3 && speed <= 2000 && isGameRun != false) {
+          coinPosition.setValue({
+            x: getRandom(),
+            y: CONSTANTS.COIN_POSITION.y,
+          });
+          setCoin((coin) => ({
+            ...coin,
+            visibility: true,
+          }));
+          moveCoin();
+          moveIndian();
+          moveIndianWomen();
+          moveGoodObject();
+        }
+      });
+    }
+  };
+
   moveShaman = () => {
     if (isGameRun) {
       Animated.timing(shamanPosition, {
@@ -174,21 +238,26 @@ const Game = () => {
           x: getRandom(),
           y: CONSTANTS.SHAMAN_POSITION.y,
         });
-        if (quantity === 3 && (speed >= 2000) & (isGameRun != false)) {
+        if (quantity === 4 && (speed >= 2000) & (isGameRun != false)) {
           coinPosition.setValue({
             x: getRandom(),
             y: CONSTANTS.COIN_POSITION.y,
           });
           setCoin((coin) => ({
             ...coin,
+            visibility: true,
+          }));
+          setGoodObject((goodObject) => ({
+            ...goodObject,
             visibility: true,
           }));
           setSpeed((speed) => speed - 600);
           moveCoin();
           moveIndian();
           moveIndianWomen();
+          moveGoodObject();
           moveShaman();
-        } else if (quantity === 3 && (speed <= 2000) & (isGameRun != false)) {
+        } else if (quantity === 4 && (speed <= 2000) & (isGameRun != false)) {
           coinPosition.setValue({
             x: getRandom(),
             y: CONSTANTS.COIN_POSITION.y,
@@ -197,9 +266,14 @@ const Game = () => {
             ...coin,
             visibility: true,
           }));
+          setGoodObject((goodObject) => ({
+            ...goodObject,
+            visibility: true,
+          }));
           moveCoin();
           moveIndian();
           moveIndianWomen();
+          moveGoodObject();
           moveShaman();
         }
       });
@@ -213,7 +287,7 @@ const Game = () => {
         const yPosition = value.y;
         if (
           xPosition >= arrowPosition.x &&
-          xPosition<= arrowPosition.x  + CONSTANTS.HERO_SIZE.width &&
+          xPosition <= arrowPosition.x + CONSTANTS.HERO_SIZE.width &&
           arrowPosition.y <= yPosition &&
           arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition
         ) {
@@ -234,6 +308,37 @@ const Game = () => {
     }
   }, [coinPosition, arrowPosition]);
 
+  useEffect(() => {
+    if (isGameRun) {
+      goodObjectPosition.addListener((value) => {
+        const xPosition = value.x;
+        const yPosition = value.y;
+        if (
+          xPosition >= arrowPosition.x &&
+          xPosition <= arrowPosition.x + CONSTANTS.HERO_SIZE.width &&
+          arrowPosition.y <= yPosition-390 &&
+          arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition-390
+        ) {
+          Animated.timing(goodObjectPosition).stop();
+          if (vibration) {
+            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+          }
+          setCoin((coin) => ({
+            ...coin,
+            quant: coin.quant + 1,
+          }));
+          setGoodObject((goodObject) => ({
+            ...goodObject,
+            visibility: false,
+          }));
+        }
+      });
+      return () => {
+        goodObjectPosition.removeAllListeners();
+      };
+    }
+  }, [goodObjectPosition, arrowPosition]);
+
   //check colisions
   useEffect(() => {
     if (isGameRun) {
@@ -242,7 +347,7 @@ const Game = () => {
         const yPosition = value.y;
         if (
           xPosition >= arrowPosition.x &&
-          xPosition<= arrowPosition.x  + CONSTANTS.HERO_SIZE.width &&
+          xPosition <= arrowPosition.x + CONSTANTS.HERO_SIZE.width &&
           arrowPosition.y <= yPosition - 190 &&
           arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition - 190
         ) {
@@ -261,7 +366,7 @@ const Game = () => {
         const yPosition = value.y;
         if (
           xPosition >= arrowPosition.x &&
-          xPosition<= arrowPosition.x  + CONSTANTS.HERO_SIZE.width &&
+          xPosition <= arrowPosition.x + CONSTANTS.HERO_SIZE.width &&
           arrowPosition.y <= yPosition - 290 &&
           arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition - 290
         ) {
@@ -280,9 +385,9 @@ const Game = () => {
         const yPosition = value.y;
         if (
           xPosition >= arrowPosition.x &&
-          xPosition<= arrowPosition.x  + CONSTANTS.HERO_SIZE.width &&
-          arrowPosition.y <= yPosition - 390 &&
-          arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition - 390
+          xPosition <= arrowPosition.x + CONSTANTS.HERO_SIZE.width &&
+          arrowPosition.y <= yPosition - 490 &&
+          arrowPosition.y + CONSTANTS.HERO_SIZE.height >= yPosition - 490
         ) {
           gameOver();
         }
@@ -292,7 +397,7 @@ const Game = () => {
       };
     }
   }, [shamanPosition, arrowPosition]);
-
+  ////////////////////
   const gameOver = async () => {
     if (vibration) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
@@ -302,6 +407,7 @@ const Game = () => {
     await Animated.timing(shamanPosition).stop();
     await Animated.timing(indianPosition).stop();
     await Animated.timing(coinPosition).stop();
+    await Animated.timing(goodObjectPosition).stop();
     await indianPosition.setValue({
       x: getRandom(),
       y: CONSTANTS.INDIAN_POSITION.y,
@@ -321,6 +427,8 @@ const Game = () => {
     await setSpeed(14000);
     console.log('game stop');
   };
+
+  ///////////////////
   const startGame = async () => {
     await setIsGameRun(true);
     await indianPosition.setValue({
@@ -339,14 +447,22 @@ const Game = () => {
       x: getRandom(),
       y: CONSTANTS.COIN_POSITION.y,
     });
-
     setCoin((coin) => ({
       ...coin,
+      visibility: true,
+    }));
+    goodObjectPosition.setValue({
+      x: getRandom(),
+      y: CONSTANTS.GOOD_OBJECT_POSITION.y,
+    });
+    setGoodObject((goodObject) => ({
+      ...goodObject,
       visibility: true,
     }));
     if (quantity === 1) {
       moveCoin();
       moveIndian();
+      moveGoodObject();
     } else if (quantity === 2) {
       moveCoin();
       moveIndian();
@@ -355,6 +471,12 @@ const Game = () => {
       moveCoin();
       moveIndian();
       moveIndianWomen();
+      moveGoodObject();
+    } else if (quantity === 4) {
+      moveCoin();
+      moveIndian();
+      moveIndianWomen();
+      moveGoodObject();
       moveShaman();
     }
     console.log('game start');
@@ -387,6 +509,15 @@ const Game = () => {
           ]}
         >
           {coin.visibility && <Coin />}
+        </Animated.View>
+
+        <Animated.View
+          style={[
+            { position: 'absolute', top: CONSTANTS.GOOD_OBJECT_POSITION.y },
+            { transform: goodObjectPosition.getTranslateTransform() },
+          ]}
+        >
+          {goodObject.visibility && <GoodObject index={0} />}
         </Animated.View>
         <Animated.View
           style={[
